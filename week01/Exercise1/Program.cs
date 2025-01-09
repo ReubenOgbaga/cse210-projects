@@ -1,9 +1,10 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 class Program
 {
     static void Main(string[] args)
-    {
+    {   Console.WriteLine("Hello World! This is the Exercise1 Project.");
         Console.Write("What is your first name? ");
         string first = Console.ReadLine();
 
@@ -12,4 +13,5 @@ class Program
 
         Console.WriteLine($"Your name is {last}, {first} {last}.");
     }
+        
 }
