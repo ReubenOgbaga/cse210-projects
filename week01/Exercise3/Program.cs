@@ -21,7 +21,7 @@ class Program
             {
                 Console.Write("Enter your guess: ");
                 guess = int.Parse(Console.ReadLine());
-                attempts++; // Increment the guess counter
+                attempts++;
 
                 if (guess == magicNumber)
                 {
