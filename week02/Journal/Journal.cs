@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 
 public class Journal
 {
     private List<Entry> entries = new List<Entry>();
-    private string password = "zAch3us123"; 
+    private string password = "zAch3us!123"; // Default password (can be customized)
 
     public void AddEntry(string prompt, string response)
     {
@@ -48,7 +49,7 @@ public class Journal
         }
     }
 
-    public void SaveToFile(string filename)
+    public void SaveToJson(string filename)
     {
         if (!ValidatePassword())
         {
@@ -56,18 +57,13 @@ public class Journal
             return;
         }
 
-        using (StreamWriter outputFile = new StreamWriter(filename))
-        {
-            foreach (Entry entry in entries)
-            {
-                outputFile.WriteLine($"{entry.Date}|{entry.Prompt}|{entry.Response}");
-            }
-        }
+        string json = JsonSerializer.Serialize(entries, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText(filename, json);
 
-        Console.WriteLine("Journal saved successfully!");
+        Console.WriteLine("Journal saved successfully to JSON!");
     }
 
-    public void LoadFromFile(string filename)
+    public void LoadFromJson(string filename)
     {
         if (!ValidatePassword())
         {
@@ -81,19 +77,10 @@ public class Journal
             return;
         }
 
-        entries.Clear();
-        string[] lines = File.ReadAllLines(filename);
+        string json = File.ReadAllText(filename);
+        entries = JsonSerializer.Deserialize<List<Entry>>(json);
 
-        foreach (string line in lines)
-        {
-            string[] parts = line.Split('|');
-            if (parts.Length == 3)
-            {
-                entries.Add(new Entry(parts[1], parts[2]) { Date = parts[0] });
-            }
-        }
-
-        Console.WriteLine("Journal loaded successfully!");
+        Console.WriteLine("Journal loaded successfully from JSON!");
     }
 
     private bool ValidatePassword()

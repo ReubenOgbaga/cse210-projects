@@ -2,20 +2,19 @@ using System;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main(string[] args)  
     {
-        Console.WriteLine("Hello World! This is the Journal Project.");
-
         Journal journal = new Journal();
         string[] prompts = new string[]
-        {   
+        {
             "Who was the most interesting person I interacted with today?",
             "What was the best part of my day?",
             "How did I see the hand of the Lord in my life today?",
             "What was the strongest emotion I felt today?",
             "If I had one thing I could do over today, what would it be?",
-            "Did you study the Scriptures today?",
-            "What did you do today that you regret doing,"
+            "Did you study your scriptures today?",
+            "What did you do today that youu regret doing?",
+            "What can you do to improve today's work?"
         };
 
         while (true)
@@ -24,8 +23,8 @@ class Program
             Console.WriteLine("1. Write a new entry");
             Console.WriteLine("2. Display the journal");
             Console.WriteLine("3. Search the journal");
-            Console.WriteLine("4. Save the journal to a file");
-            Console.WriteLine("5. Load the journal from a file");
+            Console.WriteLine("4. Save the journal to a JSON file");
+            Console.WriteLine("5. Load the journal from a JSON file");
             Console.WriteLine("6. Quit");
             Console.Write("Choose an option: ");
             string choice = Console.ReadLine();
@@ -52,15 +51,15 @@ class Program
                     break;
 
                 case "4":
-                    Console.Write("Enter filename to save: ");
+                    Console.Write("Enter filename to save (e.g., journal.json): ");
                     string saveFilename = Console.ReadLine();
-                    journal.SaveToFile(saveFilename);
+                    journal.SaveToJson(saveFilename);
                     break;
 
                 case "5":
-                    Console.Write("Enter filename to load: ");
+                    Console.Write("Enter filename to load (e.g., journal.json): ");
                     string loadFilename = Console.ReadLine();
-                    journal.LoadFromFile(loadFilename);
+                    journal.LoadFromJson(loadFilename);
                     break;
 
                 case "6":
@@ -73,5 +72,4 @@ class Program
             }
         }
     }
-    
 }
