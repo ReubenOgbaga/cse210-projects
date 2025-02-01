@@ -89,7 +89,7 @@ public class Scripture
         return count;
     }
 
-    public int TotalWordCount()
+     public int TotalWordCount()
     {
         return words.Count;
     }
