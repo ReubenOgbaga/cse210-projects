@@ -12,7 +12,7 @@ class Activity
     {
         Name = name;
         Description = description;
-    }
+    } 
 
     public void Start()
     {
